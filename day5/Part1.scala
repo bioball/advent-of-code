@@ -19,7 +19,7 @@ object Part1 {
       false
   }
 
-  def doesNotHaveForbidden(str: String) = "(ae|cd|pq|xy)".r.findFirstIn(str).toSeq.isEmpty
+  def doesNotHaveForbidden(str: String) = "(ab|cd|pq|xy)".r.findFirstIn(str).toSeq.isEmpty
 
   def isNice(str: String) = containsThreeVowels(str) && hasDoubleLetter(str) && doesNotHaveForbidden(str)
 

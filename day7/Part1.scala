@@ -23,35 +23,35 @@ trait BaseCommand {
 }
 
 case class And(wire1: String, wire2: String, endwire: String) extends BaseCommand {
-  override def doCmd(w: WireMap) = withPossibleVal(wire1, wire2, w) { (res1, res2) =>
+  def doCmd(w: WireMap) = withPossibleVal(wire1, wire2, w) { (res1, res2) =>
     res1 & res2
   }
 }
 
 case class Or(wire1: String, wire2: String, endwire: String) extends BaseCommand {
-  override def doCmd(w: WireMap) = withPossibleVal(wire1, wire2, w) { (res1, res2) =>
+  def doCmd(w: WireMap) = withPossibleVal(wire1, wire2, w) { (res1, res2) =>
     res1 | res2
   }
 }
 
 case class Lshift(wire1: String, wire2: String, endwire: String) extends BaseCommand {
-  override def doCmd (w: WireMap) = withPossibleVal(wire1, wire2, w) { (res1, res2) =>
+  def doCmd (w: WireMap) = withPossibleVal(wire1, wire2, w) { (res1, res2) =>
     res1 << res2
   }
 }
 
 case class Rshift(wire1: String, wire2: String, endwire: String) extends BaseCommand {
-  override def doCmd (w: WireMap) = withPossibleVal(wire1, wire2, w) { (res1, res2) =>
+  def doCmd (w: WireMap) = withPossibleVal(wire1, wire2, w) { (res1, res2) =>
     res1 >> res2
   }
 }
 
 case class Not(wire1: String, endwire: String) extends BaseCommand {
-  override def doCmd(w: WireMap) = getVal(wire1, w).map(~_)
+  def doCmd(w: WireMap) = getVal(wire1, w).map(~_)
 }
 
 case class SetCmd(src: String, endwire: String) extends BaseCommand {
-  override def doCmd(w: WireMap) = getVal(src, w)
+  def doCmd(w: WireMap) = getVal(src, w)
 }
 
 object Part1 {
@@ -72,7 +72,8 @@ object Part1 {
   def parseLine(line: String) = line match {
     case regex(wire1, cmd, wire2, endwire) =>
       parseCommand(wire1, cmd, wire2, endwire)
-    case setCommand(value, endwire) => SetCmd(value, endwire)
+    case setCommand(value, endwire) =>
+      SetCmd(value, endwire)
     case other =>
       throw new Error("Couldn't match, line was " + other)
   }

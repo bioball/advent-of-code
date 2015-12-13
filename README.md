@@ -1,3 +1,1 @@
-# Advent of Code
-
-These are my solutions to the [Advent of Code](http://adventofcode.com/) challenges.
+[Advent of Code](http://adventofcode.com/) challenges, solved with FP Scala.

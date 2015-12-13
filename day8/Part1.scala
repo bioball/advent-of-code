@@ -1,7 +1,6 @@
-import java.nio.charset.CodingErrorAction
 import javax.script.ScriptEngineManager
 
-import scala.io.{Codec, Source}
+import scala.io.Source
 
 /**
   * Created by danielchao on 12/13/15.

@@ -8,8 +8,8 @@ import scala.io.Source
 case class Command(command: String, pointA: (Int, Int), pointB: (Int, Int))
 
 case class Grid(set: Set[(Int, Int)] = Set.empty) {
-  def turnOn(point: (Int, Int)) = set + point
-  def turnOff(point: (Int, Int)) = set - point
+  def turnOn(point: (Int, Int)) = Grid(set + point)
+  def turnOff(point: (Int, Int)) = Grid(set - point)
   def toggle(point: (Int, Int)) = if (set.contains(point)) turnOff(point) else turnOn(point)
   def numOfLightsOn = set.size
 }

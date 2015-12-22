@@ -66,12 +66,20 @@ ifstream *openfile(string src)
     return file;
 }
 
+void printSet () {
+    for(set<Point>::iterator i = grid.begin(); i != grid.end(); i++) {
+        Point element = *i;
+        cout << element.toString() + "; ";
+    }
+    cout << endl;
+}
+
 void iterateThroughDirections(ifstream *file) {
     grid.insert(currentPoint);
-    while (!file -> eof())
+    (*file) >> noskipws;
+    char direction;
+    while ((*file) >> direction)
     {
-        char direction;
-        file -> get(direction);
         switch (direction)
         {
             case '^':

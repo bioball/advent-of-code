@@ -57,7 +57,8 @@ struct compare {
 };
 
 set<Point, compare> grid;
-Point currentPoint(0,0);
+Point santaPoint(0,0);
+Point robotPoint(0,0);
 
 ifstream *openfile(string src)
 {
@@ -74,28 +75,37 @@ void printSet () {
     cout << endl;
 }
 
+bool shouldSantaMove (int index)
+{
+    return index % 2 == 0;
+}
+
 void iterateThroughDirections(ifstream *file) {
-    grid.insert(currentPoint);
+    grid.insert(santaPoint);
+    grid.insert(robotPoint);
     (*file) >> noskipws;
     char direction;
+    int index(0);
     while ((*file) >> direction)
     {
+        Point *currentPoint = shouldSantaMove(index) ? &santaPoint : &robotPoint;
         switch (direction)
         {
             case '^':
-                currentPoint.moveUp();
+                currentPoint -> moveUp();
                 break;
             case '>':
-                currentPoint.moveRight();
+                currentPoint -> moveRight();
                 break;
             case 'v':
-                currentPoint.moveDown();
+                currentPoint -> moveDown();
                 break;
             case '<':
-                currentPoint.moveLeft();
+                currentPoint -> moveLeft();
                 break;
         }
-        grid.insert(currentPoint);
+        grid.insert(*currentPoint);
+        index++;
     }
 }
 
@@ -106,4 +116,5 @@ int main(int argc, char** argv)
     ifstream *file = openfile(src);
     iterateThroughDirections(file);
     cout << grid.size() << endl;
+    return 0;
 }

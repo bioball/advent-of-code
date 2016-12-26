@@ -1,0 +1,11 @@
+[package]
+name = "aoc"
+version = "0.1.0"
+authors = ["Daniel Chao <daniel.h.chao@gmail.com>"]
+
+[[bin]]
+name = "aoc"
+path = "day1/part1.rs"
+
+[dependencies]
+getopts="0.2"

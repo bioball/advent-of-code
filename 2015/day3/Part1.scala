@@ -16,6 +16,8 @@ case class Santa(
   def moveLeft : Santa = move (x - 1, y)
   def moveRight : Santa = move (x + 1, y)
 
+  def foo(pos: Option[Int]) = "foo"
+
   def move(pos: (Int, Int)) = {
     val newMatrix = matrix ++ Map(pos -> matrix.get(pos).map(_ + 1).getOrElse(1))
     Santa(newMatrix, pos)
